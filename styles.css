@@ -1,0 +1,586 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    color: #ffffff;
+    background-color: #000000;
+    position: relative;
+}
+
+/* Add subtle grain texture overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: overlay;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Glassmorphism Effect */
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+    overflow: hidden;
+}
+
+.particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
+
+.bottle-display {
+    margin-bottom: 2rem;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.bottle-placeholder {
+    width: 200px;
+    height: 400px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    border-radius: 40% 40% 10% 10% / 50% 50% 10% 10%;
+    margin: 0 auto 2rem;
+    position: relative;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    transform: perspective(1000px) rotateX(0) rotateY(0);
+}
+
+.bottle-reflection {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    height: 30%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: shimmer 3s infinite alternate;
+    transform: translateZ(10px);
+}
+
+.brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #ffffff, #c0c0c0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInUp 1s ease-out;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.tagline-container {
+    margin-bottom: 2rem;
+}
+
+.tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.cta-button {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    animation: fadeInUp 1s ease-out 0.6s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Story Section */
+.story-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to bottom, #000000 0%, #0a0a2e 100%);
+    padding: 100px 0;
+}
+
+.story-text {
+    text-align: center;
+}
+
+.story-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: storyReveal 1s forwards;
+    text-shadow: 0 0 15px rgba(160, 160, 255, 0.3);
+}
+
+.story-line:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.story-line:nth-child(2) {
+    animation-delay: 1.5s;
+}
+
+/* Notes Section */
+.notes-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #000000;
+    padding: 100px 0;
+    position: relative;
+}
+
+.bottle-rotation {
+    text-align: center;
+    margin-bottom: 3rem;
+    transform-style: preserve-3d;
+}
+
+.bottle-placeholder-large {
+    width: 300px;
+    height: 500px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    border-radius: 40% 40% 10% 10% / 50% 50% 10% 10%;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.1),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: rotateBottle 20s linear infinite;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.bottle-reflection-large {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 50%;
+    height: 40%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateZ(20px);
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+}
+
+.note-card {
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.note-card:hover {
+    transform: translateY(-10px) translateZ(20px);
+    box-shadow: 0 0 30px rgba(160, 160, 255, 0.3);
+}
+
+.note-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.note-description {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Products Section */
+.products-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to bottom, #000000 0%, #0a0a0a 100%);
+    padding: 100px 0;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+}
+
+.product-card {
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+}
+
+.product-card:hover {
+    transform: scale(1.05) translateY(-10px) translateZ(20px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.product-bottle {
+    width: 150px;
+    height: 250px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    border-radius: 40% 40% 10% 10% / 50% 50% 10% 10%;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+
+.product-bottle:hover {
+    box-shadow: 0 0 40px rgba(160, 160, 255, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.bottle-reflection-small {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    height: 30%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateZ(10px);
+}
+
+.product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.product-description {
+    font-size: 1rem;
+    opacity: 0.7;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Experience CTA Section */
+.experience-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #000000 0%, #0a0a2e 100%);
+    padding: 100px 0;
+}
+
+.cta-content {
+    text-align: center;
+}
+
+.cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.cta-button-secondary, .cta-button-tertiary {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button-secondary:hover, .cta-button-tertiary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+.footer {
+    background: #000000;
+    padding: 4rem 0 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.logo-footer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.footer-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-nav a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.footer-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: width 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: white;
+}
+
+.footer-nav a:hover::after {
+    width: 100%;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 0.3;
+        transform: translateZ(10px);
+    }
+    100% {
+        opacity: 0.6;
+        transform: translateZ(10px);
+    }
+}
+
+@keyframes storyReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateBottle {
+    from {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .brand-name {
+        font-size: 2.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.2rem;
+    }
+    
+    .story-line {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .cta-title {
+        font-size: 2rem;
+    }
+    
+    .bottle-placeholder {
+        width: 150px;
+        height: 300px;
+    }
+    
+    .bottle-placeholder-large {
+        width: 200px;
+        height: 350px;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-name {
+        font-size: 2rem;
+    }
+    
+    .story-line {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .cta-title {
+        font-size: 1.8rem;
+    }
+    
+    .bottle-placeholder {
+        width: 120px;
+        height: 240px;
+    }
+    
+    .bottle-placeholder-large {
+        width: 150px;
+        height: 250px;
+    }
+}
+
+/* Glow effects for luxury feel */
+.note-card::before,
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #ff00cc);
+    z-index: -1;
+    border-radius: 13px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.note-card:hover::before,
+.product-card:hover::before {
+    opacity: 0.5;
+}
+
+/* Enhanced 3D perspective for bottles */
+.bottle-display,
+.bottle-rotation {
+    perspective: 1000px;
+}
